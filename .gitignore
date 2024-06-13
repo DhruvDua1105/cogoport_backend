@@ -1,0 +1,49 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Virtual environment directory
+venv/
+
+# Environment variables file
+.env
+
+# Database files
+*.sqlite3
+
+# Editor/IDE specific files
+.vscode/
+.idea/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Uvicorn log files
+uvicorn.log
+
+# Pytest cache
+.cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+*.py,cover
+
+# Mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Pylint report
+pylint-report.txt
