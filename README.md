@@ -1,110 +1,88 @@
-Country Configuration Manager
-=============================
+# FastAPI Configuration Management API
 
-This is a FastAPI application for managing country configurations.
+## Overview
 
-Project Structure
------------------
+This project implements a FastAPI-based API for managing configurations using SQLAlchemy with PostgreSQL as the database backend. It provides CRUD (Create, Read, Update, Delete) operations for configurations stored in the database.
 
-* `__pycache__/`: Python cache directory
-* `.env`: Environment file for storing database URL
-* `.gitignore`: Git ignore file
-* `app/`: Application directory
-	+ `__pycache__/`: Python cache directory
-	+ `database.py`: Database configuration file
-	+ `main.py`: Main application file
-	+ `models.py`: Database models file
-	+ `schemas.py`: API schema file
-	+ `test.py`: Test file
-* `requirements.txt`: List of dependencies required by the application
+## NOTE: Please checkout the master branch for the main code since the code on the other branch is deprecated.
 
-Setup
------
+## Screenshots
 
-## Setup
+![image](https://github.com/DhruvDua1105/cogoport_backend/assets/86777191/e54ca903-f78f-4a2f-97db-7efe80b09bf9)
+![image](https://github.com/DhruvDua1105/cogoport_backend/assets/86777191/60ab6cbf-1edf-4997-b21e-1515cca32f91)
 
 
-#### Clone the repository
 
-git clone https://github.com/your-username/country-configuration-manager.git
+## Project Structure
 
+```plaintext
+config_management/
+    ├── app/
+    │   ├── __init__.py
+    │   ├── main.py
+    │   ├── crud.py
+    │   ├── database.py
+    │   ├── models.py
+    │   └── schemas.py
+    ├── .env
+    ├── requirements.txt
+    └── .gitignore
+```
 
-#### Install dependencies
+- **app/**: Contains the main application files.
+  - `main.py`: FastAPI application setup and endpoints.
+  - `crud.py`: Implements CRUD operations using SQLAlchemy.
+  - `database.py`: Configures the database connection and session management.
+  - `models.py`: Defines SQLAlchemy ORM models for the application.
+  - `schemas.py`: Defines Pydantic schemas for request and response validation.
+- `.env`: Lists all the environment variables required for the project.
+- `requirements.txt`: Lists all Python dependencies required for the project.
 
-pip install -r requirements.txt
+## Installation and Setup
 
+### Prerequisites
 
-#### Set up your database
+Before you begin, ensure you have the following installed:
 
+- Python 3.7+
+- PostgreSQL database (ensure `psycopg2` is installed)
+- pip package manager
 
-Update the `SQLALCHEMY_DATABASE_URL` in the `.env` file with your database connection string.
+### Setup Instructions
 
+1. **Clone the repository and navigate to the project directory:**
 
-### Running the Application
+   ```bash
+   git clone https://github.com/DhruvDua1105/cogoport_backend.git
+   cd configurationManagement_dhruv
+   ```
+2. **Create and activate a virtual environment:**
 
+   ```bash
+   python -m venv venv
+   source venv/bin/activate      # On Windows use `venv\Scripts\activate`
+   ```
+3. **Install dependencies:**
 
-To run the application, use the following command:
+   ```bash
+   pip install -r app/requirements.txt
+   ```
+   
+4. **Database Configuration:**
 
-uvicorn app.main:app --reload
+Open .env and replace DATABASE_URL with your PostgreSQL connection URL:
 
+   ```bash
+   DATABASE_URL = "postgresql://your_username:your_password@localhost:5432/your_database_name"
+   ```
+5. **Start the FastAPI application:**
 
-### API Endpoints
+   ```bash
+   uvicorn app.main:app --reload
+   ```
+The application will start, and you can access it at http://localhost:8000.
 
+## Explore the API documentation:
 
-#### Create a new country configuration
+Open your web browser and go to http://localhost:8000/docs to view the interactive API documentation (Swagger UI). Here, you can explore the available API endpoints, send requests, and view responses.
 
-
-**POST /create_configuration**
-
-
-* Description: Create a new country configuration.
-
-* Example Usage:
-
-curl -X POST "http://localhost:8000/create_configuration" -H "Content-Type: application/json" -d ' { "country_code": "IND", "business_name": "Example Company", "registration_number": "12345" }'
-
-
-#### Retrieve country configuration by country code
-
-
-**GET /get_configuration/{country_code}**
-
-
-* Description: Retrieve country configuration by country code.
-
-* Example Usage:
-
-curl -X GET "http://localhost:8000/get_configuration/IND"
-
-
-#### Update country configuration
-
-
-**POST /update_configuration**
-
-
-* Description: Update country configuration.
-
-* Example Usage:
-
-curl -X POST "http://localhost:8000/update_configuration" -H "Content-Type: application/json" -d ' { "country_code": "IND", "business_name": "Updated Company", "registration_number": "54321" }'
-
-
-#### Delete country configuration by country code
-
-
-**DELETE /delete_configuration**
-
-
-* Description: Delete country configuration by country code.
-
-* Query Parameter:
-
-	+ `country_code`: Code of the country configuration to delete.
-
-* Example Usage:
-
-curl -X DELETE "http://localhost:8000/delete_configuration?country_code=IND"
-
-
-Note: Replace `http://localhost:8000` with your actual API endpoint URL.
